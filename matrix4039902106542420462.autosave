@@ -1,0 +1,46 @@
+def vecToMat(v):
+    m=[[0 for i in range(3)] for j in range(1)]
+    m[0][0]=v.x
+    m[1][0]=v.y
+    m[2][0]=v.z
+    return m
+def matMatMul(a,b):
+    colsA=a[0].length()
+    rowsA=a.length()
+    colsB=b[0].length()
+    rowsB=b.length()
+    
+    if(colsA != rowsB):
+        print ("cols dont match")
+        return None
+    
+    result = [[0 for i in range(rowsA)] for j in range(colsB)]
+    
+    
+    for i in range(rowsA):
+        for j in range(colsB):
+            sum=0
+            for k in range(colsA):
+                sum+= a[i][k] *b[k][j]
+            result[i][j]=sum
+    
+    return result
+
+def matToVec(m):
+    v=PVector()
+    v.x=m[0][0]
+    v.y=m[1][0]
+    if m.length() > 2:
+        v.z=m[2][0]
+    return v
+
+
+
+
+
+def matVecMul(a,b):
+    print("ok")
+    m=vecToMat(b)
+    m2=matMatMul(a, m )
+    m1=matToVec (m2)
+    return m1
